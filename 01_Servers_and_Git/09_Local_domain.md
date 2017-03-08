@@ -107,12 +107,13 @@ Mac/MAMP users, yours might look something like this:
 </VirtualHost>
 ```
 
-Windows/XAMPP users, yours might look something like this:
+Windows/XAMPP users, yours might look something like the following. (The details of this example are different from the example VirtualHosts you'll see commented-out in xampp's httpd-vhosts.conf; that's okay.)
+
 ```txt
 <VirtualHost *:80>
     ServerName foobooks.loc
-    DocumentRoot c:\xampp\htdocs\foobooks\public
-    <Directory c:\xampp\htdocs\foobooks\public>
+    DocumentRoot C:/xampp/htdocs/foobooks/public
+    <Directory C:/xampp/htdocs/foobooks/public>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
@@ -120,6 +121,7 @@ Windows/XAMPP users, yours might look something like this:
     </Directory>
 </VirtualHost>
 ```
+
 
 Adjust the following as needed:
 
