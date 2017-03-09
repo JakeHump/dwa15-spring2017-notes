@@ -212,8 +212,6 @@ Being able to output messages like this will be extremely useful when building a
 ## Using a generic package, not specific to Laravel
 For our next example, we're going to use a Package called [__rych-random__](https://github.com/rchouinard/rych-random) which lets you easily generate random data.
 
-Some example usages for this package might be generating random coupon codes for a e-commerce site, or random passwords if you have to reset a user's password, etc.
-
 This particular package is not built specifically for Laravel, but it will work.
 
 
@@ -240,10 +238,11 @@ After adding this line, run `composer update` to have Composer download that pac
 
 
 ### Using rych-random
-Taking from the notes in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up this example:
+Taking from the notes in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up this example in our PracticeController:
 
 ```php
-Route::get('/random', function() {
+
+public function exampleX() {
 
     $random = new Rych\Random\Random();
     return $random->getRandomString(8);
@@ -251,7 +250,7 @@ Route::get('/random', function() {
 });
 ```
 
-When you visit `/random` in the browser, you should see some output of a random string of letters and numbers, e.g. `ElAivf96`.
+When you visit this action you should see some output of a random string of letters and numbers, e.g. `ElAivf96`.
 
 Note that in this example, we weren't guided to add any providers or aliases in `config/app.php` like we did with debugbar.
 
