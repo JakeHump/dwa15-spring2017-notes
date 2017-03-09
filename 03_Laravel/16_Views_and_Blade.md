@@ -11,30 +11,25 @@
 
 
 ## Basic example
-Let's create a view for the book's show route.
-
-If the following route does not exist in your foobooks example so far, go ahead and create it:
+Let's create a view for the book's show route:
 
 ```php
-Route::get('/books/{title}', 'BookController@show')->name('books.show');
+Route::get('/books/{title}', 'BookController@show');
 ```
 
-Also make sure you have the corresponding controller action in `BookController.php`, which might look like this:
 
+Via the `show` method in `BookController.php` which currently looks like this:
 ```php
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $title
-     * @return \Illuminate\Http\Response
-     */
-    public function show($title)
-    {
-        return 'Show book '.$title;
-    }
+/**
+* GET
+* /books/{title?}
+*/
+public function show($title = null) {
+    return 'Show the book '.$title;
+}
 ```
 
-Our goal is to replace that `return 'Show book '.$title;` with a View file.
+Our goal is to replace that `return 'Show the book '.$title;` with a View file.
 
 
 
@@ -45,11 +40,12 @@ Start by creating a new, blank file in `resources/views/books/show.blade.php`.
 
 Note how the file name `show.blade.php` ends in `.blade.php`. This is required in order to use the Blade templating engine.
 
-__Organizing View files:__ How you organize your view files is up to you, but one suggested approach is to create a subfolder for each Controller. I.e. in this case we have a subfolder `/resources/views/books/` for the `BookController.php`.
+__Organizing View files:__ How you organize your view files is up to you, but one suggested approach...
 
-Another suggested convention is to make the Controller's method name (`show`) correspond to the file name (`show.blade.php`).
++ Create a subfolder for each Controller. I.e. in this case we have a subfolder `/resources/views/books/` for the `BookController.php`.
++ Make the Controller's method name (`show`) correspond to the file name (`show.blade.php`).
 
-The benefit of these latter two conventions is it makes it easy to correlate controller actions to view files.
+The benefit of these two conventions is it makes it easy to correlate controller actions to view files.
 
 
 
@@ -81,13 +77,13 @@ With your new view file created, fill it with the following content:
 		&copy; {{ date('Y') }}
 	</footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </body>
 </html>
 ```
 
-Note that most of the above file looks like regular HTML. The exception is the content in the `<section>` and `<footer>` where you see the double brackets being used (`{{ }}`). Those brackets are Blade syntax, and they are short for &ldquo;echo this to the page&rdquo;.
+Note that most of the above file looks like regular HTML. The exception is the content in the `<section>` and `<footer>` where you see the double brackets being used (`{{ }}`). Those brackets are [Blade](https://laravel.com/docs/blade) syntax, and they are short for &ldquo;echo this to the page&rdquo;.
 
 So when you see something like this...
 ```php
