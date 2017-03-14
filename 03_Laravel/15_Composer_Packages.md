@@ -238,13 +238,13 @@ After adding this line, run `composer update` to have Composer download that pac
 
 
 ### Using rych-random
-Taking from the notes in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up this example in our PracticeController:
+Taking from the instructions in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up the following example in the PracticeController. Note: We prefixed `Rych\Random\Random()` with a backwards slash so autoloading would look for this class in the global namespace (rather than the controller's namespace)
 
 ```php
 
 public function exampleX() {
 
-    $random = new Rych\Random\Random();
+    $random = new \Rych\Random\Random();
     return $random->getRandomString(8);
 
 });
@@ -252,9 +252,7 @@ public function exampleX() {
 
 When you visit this action you should see some output of a random string of letters and numbers, e.g. `ElAivf96`.
 
-Note that in this example, we weren't guided to add any providers or aliases in `config/app.php` like we did with debugbar.
-
-This works because in the example we're given, we're given the namespaced name for the class `Rych\Random\Random()`. Using this full namespace, Composer and our autoloading configuration knows to navigate to `vendor/rsych/` to find the appropriate class file.
+Note that in this example, we weren't guided to add any providers or aliases in `config/app.php` like we did with debugbar. This works because we used the full namespace when invoking the class: `\Rych\Random\Random()`.
 
 But what if we didn't want to have to specify the full namespace every time?
 
@@ -267,7 +265,7 @@ You can implement the [`use`](http://php.net/manual/en/language.namespaces.impor
 Example:
 
 ```php
-use \Rych\Random\Random;
+use Rych\Random\Random;
 
 Route::get('/practice', function() {
 
@@ -317,9 +315,9 @@ Route::get('/practice', function() {
 Which method you want to use is up to you, but here's a general guideline:
 
 + Using a Class just once?
-    + Go with the full namespace, e.g. `$random = new Rych\Random\Random();`
+    + Go with the full namespace, e.g. `$random = new \Rych\Random\Random();`
 + Using a Class multiple times in a single file?
-    + Set `use \Rych\Random\Random;` at the top of the file.
+    + Set `use Rych\Random\Random;` at the top of the file.
 + Using a Class multiple times throughout your application?
     + Create an alias.
 
