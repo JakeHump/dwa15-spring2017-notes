@@ -14,8 +14,10 @@
 
     <form method='POST' action='/books/new'>
         {{ csrf_field() }}
-        <input type='text' name='title'>
-        <input type='submit' value='Submit'>
+
+        <label for='title'>Title</label>
+        <input type='text' name='title' id='title'>
+        <input type='submit' value='Add book'>
     </form>
 
 @endsection
@@ -52,8 +54,13 @@ public function storeNewBook(Request $request) {
 
     $title = $request->input('title');
 
-    # Code will eventually go here to actually save this book to a database
+    # 
+    #
+    # [...Code will eventually go here to actually save this book to a database...]
+    #
+    #
 
+    # Redirect the user to the page to view the book
     return redirect('/books/'.$title);
 }
 ```
