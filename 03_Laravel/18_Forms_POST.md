@@ -35,7 +35,7 @@ Route::post('/books/new', 'BookController@storeNewBook');
 ```php
 /**
 * GET
-* /book/new
+* /books/new
 * Display the form to add a new book
 */
 public function createNewBook(Request $request) {
@@ -45,7 +45,7 @@ public function createNewBook(Request $request) {
 
 /**
 * POST
-* /book/new
+* /books/new
 * Process the form for adding a new book
 */
 public function storeNewBook(Request $request) {
