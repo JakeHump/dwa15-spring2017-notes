@@ -1,4 +1,4 @@
-# Forms Part 1 (with GET)
+# Forms with GET
 
 ## Preface
 What we know about forms so far:
