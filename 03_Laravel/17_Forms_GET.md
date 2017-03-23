@@ -161,8 +161,12 @@ public function search(Request $request) {
 
     # ======== End exploration of $request ==========
 
-
-    return view('books.search');
+    # Return the view with some placeholder data we'll flesh out in a later step
+    return view('books.search')->with([
+        'searchTerm' => '',
+        'caseSensitive' => false,
+        'searchResults' => []
+    ]);
 }
 ```
 
@@ -262,6 +266,18 @@ In `search.blade.php`, right after the form, add this code:
 @endif
 ```
 
+
+
+## Finishing touches: Retain data in inputs
+To retain the data in your form inputs after submission, update the `value` attribute of your `searchTerm` input to look like this:
+```html
+<input type='text' name='searchTerm' id='searchTerm' value='{{ $searchTerm or '' }}'>
+```
+
+And update your `caseSensitive` checkbox to look like this:
+```html
+<input type='checkbox' name='caseSensitive' {{ ($caseSensitive) ? 'CHECKED' : '' }} >
+```
 
 
 
