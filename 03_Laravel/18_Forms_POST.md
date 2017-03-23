@@ -12,7 +12,7 @@
 @section('content')
     <h1>Add a new book</h1>
 
-    <form method='POST' action='/book/create'>
+    <form method='POST' action='/books/new'>
         {{ csrf_field() }}
         <input type='text' name='title'>
         <input type='submit' value='Submit'>
