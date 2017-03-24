@@ -129,8 +129,19 @@ Read the section on [Working with Error Messages](https://laravel.com/docs/valid
 ## Available validation rules
 In the above example, we only saw two rules: `required` and `min`. There are currently 42 total validation rules provided for you from Laravel&mdash; you can read about them here: [Validation: Available Validation Rules](http://laravel.com/docs/validation#available-validation-rules).
 
-## old()
 
+## Retaining form data when validation fails
+When validation fails and the visitor is redirected back to the form, the form data from the request is stored on the server in something called a **Session**.
+
+The form data can then be pulled out of the Session and used to re-fill the form inputs, retaining the visitor's data.
+
+This is done using a Laravel helper method called [`old`](https://laravel.com/docs/5.4/helpers#method-old).
+
+For example:
+
+```html
+<input type='text' name='title' id='title' value='{{ old('title') }}'>
+```
 
 
 ## Required Readings
