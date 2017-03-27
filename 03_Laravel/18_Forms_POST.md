@@ -66,7 +66,7 @@ public function storeNewBook(Request $request) {
 ```
 
 ### Test it out
-E.g. <http://foobooks.loc/books/new>
+E.g. `http://foobooks.loc/books/new`
 
 
 
