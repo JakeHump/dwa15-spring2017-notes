@@ -238,16 +238,15 @@ After adding this line, run `composer update` to have Composer download that pac
 
 
 ### Using rych-random
-Taking from the instructions in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up the following example in the PracticeController. Note: We prefixed `Rych\Random\Random()` with a backwards slash so autoloading would look for this class in the global namespace (rather than the controller's namespace)
+Taking from the instructions in the [rych-random documentation](https://github.com/rchouinard/rych-random), we then set up the following example in the PracticeController. Note: We prefixed `\Rych\Random\Random()` with a backwards slash so autoloading would look for this class in the global namespace (rather than the controller's namespace)
 
 ```php
-
 public function exampleX() {
 
     $random = new \Rych\Random\Random();
     return $random->getRandomString(8);
 
-});
+}
 ```
 
 When you visit this action you should see some output of a random string of letters and numbers, e.g. `ElAivf96`.
@@ -267,12 +266,14 @@ Example:
 ```php
 use Rych\Random\Random;
 
-Route::get('/practice', function() {
+# [...]
+
+public function exampleX() {
 
     $random = new Random();
     return $random->getRandomString(8);
 
-});
+}
 ```
 
 
@@ -303,12 +304,12 @@ The *key* is the alias name you want to use (`Random`) and the *value* is the fu
 Once you've set up this alias, you can call the `Random` class with no namespace and without having to utilize the `use` keyword.
 
 ```php
-Route::get('/practice', function() {
+public function exampleX() {
 
-    $random = new Random();
+    $random = new \Random();
     return $random->getRandomString(8);
 
-});
+}
 ```
 
 ### Which option is best?
