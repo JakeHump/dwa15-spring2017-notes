@@ -301,7 +301,7 @@ Here's an example of how you'd update the `aliases` array in `/config/app.php` t
 
 The *key* is the alias name you want to use (`Random`) and the *value* is the full path to the class, including the namespace (`Rych\Random\Random`)
 
-Once you've set up this alias, you can call the `Random` class with no namespace and without having to utilize the `use` keyword.
+Once you've set up this alias, you can call the `Random` class with no namespace (but you still need the backslash):
 
 ```php
 public function exampleX() {
