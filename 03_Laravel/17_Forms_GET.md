@@ -151,8 +151,8 @@ public function search(Request $request) {
     dump($request->input('caseSensitive'));
 
     # Boolean to see if the request contains data for a particular field
-    dump($request->has('searchTerm')) # Should be true
-    dump($request->has('publishedYear')) # There's no publishedYear input, so this should be false
+    dump($request->has('searchTerm')); # Should be true
+    dump($request->has('publishedYear')); # There's no publishedYear input, so this should be false
 
     # You can get more information about a request than just the data of the form, for example...
     dump($request->fullUrl());
