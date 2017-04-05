@@ -16,7 +16,6 @@ On the flip side, you also have your application running on a live server, which
 + Connect to a live database
 + Send outgoing mail using a service like [SendGrid](https://sendgrid.com/)
 
-<br>
 **local** and **production** are the two most common environments, but you may have other ones like **staging**, **testing**, or more.
 
 Additionally, each developer working on your project might also have their own local environment configurations.
