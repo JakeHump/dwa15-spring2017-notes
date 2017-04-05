@@ -86,13 +86,13 @@ Then create a new method in the BookController that will display this view:
 ```php
 # app/Http/Controllers/BookController.php
 
-    /**
-	* GET
-    * /search
-	*/
-    public function search() {
-        return view('books.search');
-    }
+/**
+* GET
+* /search
+*/
+public function search() {
+    return view('books.search');
+}
 ```
 
 
