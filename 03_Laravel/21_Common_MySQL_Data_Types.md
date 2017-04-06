@@ -1,6 +1,6 @@
 ## Reference:
 
-+ [Full list of MySQL Data Types](http://help.scibit.com/mascon/masconMySQL_Field_Types.html)
++ [FMore MySQL Data Types](https://www.tutorialspoint.com/mysql/mysql-data-types.htm)
 + Search for *&ldquo;Available Column Types&rdquo;* on [Laravel: Migrations](http://laravel.com/docs/migrations#writing-migrations).
 
 ## Text
