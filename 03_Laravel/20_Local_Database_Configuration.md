@@ -121,9 +121,9 @@ Route::get('/debug', function() {
 });
 ```
 
-When you visit the resulting route (`http://localhost/debug`) you should see some debugging information, and if everything went well a message saying `Connection confirmed` followed by a list of the databases on your server.
+When you visit the resulting route (`http://localhost/debug`) you should see some debugging information, and if everything went well a message saying **Connection confirmed** followed by a list of the databases on your server.
 
-If you see a red `Caught exception:` message, you have some troubleshooting to do.
+If you see a red **Caught exception:** message, you have some troubleshooting to do. A collection of common issues/solutions is listed at the bottom of this document.
 
 <small>
 Note: The above code is echo'ing a lot of content (including HTML) to the page directly from your Routes file,
@@ -135,3 +135,70 @@ which is typically something we want to avoid. We're making an exception here be
 
 ## Conclusions
 With your database setup and your connection confirmed, you're ready to move on to **Migrations** in order to build your tables.
+
+
+<br>
+## Troubleshooting
+
+### MAMP users: `No such file or directory`
+
+When testing your database connection, you see the following error:
+```xml
+Caught exception: SQLSTATE[HY000] [2002] No such file or directory (SQL: SHOW DATABASES;)
+```
+
+Or:
+```xml
+[Illuminate\Database\QueryException]
+SQLSTATE[HY000] [2002] No such file or directory (SQL: select * from information_schema.tables where table_schema = foobooks and table_name = migrations)
+PDOException
+SQLSTATE[HY000] [2002] No such file or directory
+```
+
+This error likely means that your application is using a different instance of MySQL than the one MAMP is using. Fix with the following steps.
+
+__Step 1.__
+Open your local `/.env` file and paste this line after your other `DB_*` configs:
+
+```xml
+DB_UNIX_SOCKET='/Applications/MAMP/tmp/mysql/mysql.sock'
+```
+
+__Step 2.__
+Open `/config/database.php` and at the bottom of the `mysql` settings, add this config:
+
+```xml
+'unix_socket' => env('DB_UNIX_SOCKET', null),
+```
+
+__Step 3.__
+In the `/debug` route given to you in the notes above, find this line:
+
+```php
+//print_r(config('database.connections.mysql'));
+```
+...and uncomment it so your database configurations will be visible when you visit /debug.
+
+Save your changes and refresh your `/debug` route.
+
+You should see output like the following, and hopefully, a green confirmation message that
+your database connection is working.
+
+```xml
+(
+    [driver] => mysql
+    [host] => localhost
+    [port] => 3306
+    [database] => foobooks
+    [username] => root
+    [password] => root
+    [charset] => utf8mb4
+    [collation] => utf8mb4_unicode_ci
+    [prefix] =>
+    [strict] => 1
+    [engine] =>
+    [unix_socket] => /Applications/MAMP/tmp/mysql/mysql.sock
+)
+```
+
+If the connection fails, confirm `unix_socket` is set to `/Applications/MAMP/tmp/mysql/mysql.sock`.
