@@ -34,7 +34,7 @@ For our examples we'll be using the MySQL database that comes with MAMP so find 
 ],
 ```
 
-Now how the `env()` method is used, making it easy to set separate database configurations for your different environments. This is important, because you'll be using two different databases&mdash; one locally and one on production (DigitalOcean).
+Note how the `env()` method is used, making it easy to set separate database configurations for your different environments. This is important, because you'll be using two different databases&mdash; one locally and one on production (DigitalOcean).
 
 Open your local `/.env` file and you should see 6 `DB_` constants are set with some defaults:
 
