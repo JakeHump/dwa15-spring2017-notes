@@ -329,6 +329,7 @@ To get good at writing queries it takes practice.
 
 <br>
 Armed with this information, write queries to accomplish the following...
+
 + Retrieve the last 5 books that were added to the `books` table.
 + Retrieve all the books published after 1950.
 + Retrieve all the books in alphabetical order by title.
