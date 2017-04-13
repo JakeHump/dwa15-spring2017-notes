@@ -1,39 +1,4 @@
 # Eloquent ORM
-
-
-## Preface: Seed data
-
-In this note set we'll explore examples of querying the `books` table in the `foobooks` database, so it'll be useful if we're all working with the same data.
-
-On your local server, in phpMyAdmin, select the `foobooks` database then find the *SQL* tab.
-
-Copy/paste and run the following SQL:
-
-```sql
-DELETE FROM books;
-INSERT INTO `books` (`id`, `created_at`, `updated_at`, `title`, `author`, `published`, `cover`, `purchase_link`) VALUES
-(1, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'The Great Gatsby', 'F. Scott Fitzgerald', 1925, 'http://img2.imagesbn.com/p/9780743273565_p0_v4_s114x166.JPG', 'http://www.barnesandnoble.com/w/the-great-gatsby-francis-scott-fitzgerald/1116668135?ean=9780743273565'),
-(2, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'The Bell Jar', 'Sylvia Plath', 1963, 'http://img1.imagesbn.com/p/9780061148514_p0_v2_s114x166.JPG', 'http://www.barnesandnoble.com/w/bell-jar-sylvia-plath/1100550703?ean=9780061148514'),
-(3, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'I Know Why the Caged Bird Sings', 'Maya Angelou', 1969, 'http://img1.imagesbn.com/p/9780345514400_p0_v1_s114x166.JPG', 'http://www.barnesandnoble.com/w/i-know-why-the-caged-bird-sings-maya-angelou/1100392955?ean=9780345514400'),
-(4, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', 1997, 'http://prodimage.images-bn.com/pimages/9780590353427_p0_v1_s484x700.jpg', 'http://www.barnesandnoble.com/w/harry-potter-and-the-sorcerers-stone-j-k-rowling/1100036321?ean=9780590353427'),
-(5, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 1998, 'http://prodimage.images-bn.com/pimages/9780439064873_p0_v1_s192x300.jpg', 'http://www.barnesandnoble.com/w/harry-potter-and-the-chamber-of-secrets-j-k-rowling/1004338523?ean=9780439064873'),
-(6, '2017-04-13 13:19:36', '2017-04-13 13:19:36', 'Harry Potter and the The Prisoner of Azkaban', 'J.K. Rowling', 1999, 'http://prodimage.images-bn.com/pimages/9780439136365_p0_v1_s192x300.jpg', 'http://www.barnesandnoble.com/w/harry-potter-and-the-prisoner-of-azkaban-j-k-rowling/1100178339?ean=9780439136365');
-
-
-```
-
-Example:
-
-<img src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-sql-seed@2x.png' style='max-width:1343px;' alt=''>
-
-After you run the query, your `books` table should have three rows:
-
-<img src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-sql-seed-results@2x.png' style='max-width:1126px;' alt=''>
-
-With some data to work with - let's dig in.
-
-
-## Eloquent ORM
 __ORM (Object-relational Mapping)__ is the software practice of using Classes/Objects to represent data entities of an application.
 
 (In all of our work, our *data entities* are database tables/rows, but a data entity could come from other sources, for example some external API that delivers JSON data.)
