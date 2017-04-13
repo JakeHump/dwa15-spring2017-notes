@@ -339,6 +339,7 @@ Armed with this information, write queries to accomplish the following...
 
 <br>
 Bonus practice: This code...
+
 ```php
 $book = new Book();
 $book->title = "Harry Potter and the Sorcerer's Stone";
