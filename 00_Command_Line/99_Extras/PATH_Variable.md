@@ -81,7 +81,7 @@ Example output:
 
 <img src='http://making-the-internet.s3.amazonaws.com/sysadmin-example-echo-path-windows@2x.png' style='max-width:942px;' alt=''>
 
-Note that each path in the PATH variable is separated by a colon.
+Note that each path in the PATH variable is separated by a semi-colon.
 
 Let's use an example scenario of adding the PHP executable that comes with XAMPP to your PATH. This will make it so that when you run the command `php` from command line, it will use XAMPP's PHP executable.
 
