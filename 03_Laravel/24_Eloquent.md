@@ -25,6 +25,7 @@ If you're confused by the various terms used thus far, here's a summary:
 | Model | A Class/Object used to represent data, i.e. the crux of the concept of ORM.
 
 <br>
+
 Note that only *Eloquent* is unique to Laravel. The other terms are seen in other languages/frameworks. For example, in Ruby on Rails, their ORM tool is called [Active Records](http://guides.rubyonrails.org/active_record_basics.html), and it was a large inspiration for Laravel's Eloquent.
 
 
