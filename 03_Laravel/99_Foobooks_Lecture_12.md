@@ -137,7 +137,7 @@ That way when the form is submitted, the controller action can retrieve the book
 
 ```php
 $book = Book::find($id);
-return view('book.edit')->with('book', $book);
+return view('books.edit')->with('book', $book);
 ```
 
 Test it with ids 1,2,3, etc.
