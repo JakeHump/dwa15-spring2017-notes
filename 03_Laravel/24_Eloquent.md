@@ -29,7 +29,7 @@ If you're confused by the various terms used thus far, here's a summary:
 Note that only *Eloquent* is unique to Laravel. The other terms are seen in other languages/frameworks. For example, in Ruby on Rails, their ORM tool is called [Active Records](http://guides.rubyonrails.org/active_record_basics.html), and it was a large inspiration for Laravel's Eloquent.
 
 
-## Create an Model
+## Create a Model
 Our first Model will be the __Book__ Model, which will interface with the __books__ table.
 
 __Convention__: Model names should be singular, with the first letter capitalized.
@@ -62,7 +62,7 @@ This is what will give the Book class all the functionality provided by Eloquent
 ## Eloquent Requirements
 In order for Eloquent to work its magic, there are a 3 requirements we should follow:
 
-__Requirement 1) Model's class name convetion__
+__Requirement 1) Model's class name convention__
 
 A Model's class name should be the singular version of the corresponding table name, and it should be capitalized.
 
@@ -133,7 +133,7 @@ class PracticeController extends Controller
 Study the comments to understand what is going on.
 
 
-## CRUD - Read
+## CRUD - Reading
 Next, let's look at the Eloquent [`get`](https://laravel.com/docs/5.4/eloquent#retrieving-models) method to *read* data from a table. We'll also introduce the `where` method to filter the results.
 
 ```php
