@@ -37,9 +37,9 @@ Then, we can construct the dropdown (`<select>`) using this data:
 ```html
 <label for='author_id'>* Author:</label>
 <select id='author_id' name='author_id'>
-    @foreach($authorsForDropdown as $author_id => $author_name)
+    @foreach($authorsForDropdown as $author_id => $authorName)
          <option value='{{ $author_id }}' {{ ($book->author_id == $author_id) ? 'SELECTED' : '' }}>
-             {{$author_name}}
+             {{$authorName}}
          </option>
      @endforeach
 </select>
@@ -136,23 +136,26 @@ public function edit($id = null) {
     # Get this book and eager load its tags
     $book = Book::with('tags')->find($id);
 
+    # Get authors
+    $authorsForDropdown = Author::authorsForDropdown();
+
     # Get all the possible tags so we can include them with checkboxes in the view
-    $tags_for_checkbox = Tag::getTagsForCheckboxes();
+    $tagsForCheckbox = Tag::getTagsForCheckboxes();
 
     # Create a simple array of just the tag names for tags associated with this book;
     # will be used in the view to decide which tags should be checked off
-    $tags_for_this_book = [];
+    $tagsForThisBook = [];
     foreach($book->tags as $tag) {
-        $tags_for_this_book[] = $tag->name;
+        $tagsForThisBook[] = $tag->name;
     }
-    # Results in an array like this: $tags_for_this_book['novel','fiction','classic'];
+    # Results in an array like this: $tagsForThisBook => ['novel','fiction','classic'];
 
     return view('book.edit')
         ->with([
             'book' => $book,
-            'authors_for_dropdown' => $authors_for_dropdown,
-            'tags_for_checkbox' => $tags_for_checkbox,
-            'tags_for_this_book' => $tags_for_this_book,
+            'authorsForDropdown' => $tagsForThisBook,
+            'tagsForCheckbox' => $tagsForCheckbox,
+            'tagsForThisBook' => $tagsForThisBook,
         ]);
 
 }
@@ -163,14 +166,14 @@ public function edit($id = null) {
 
 [...]
 
-@foreach($tags_for_checkbox as $tag_id => $tag_name)
+@foreach($tagsForCheckbox as $id => $name)
     <input
         type='checkbox'
-        value='{{ $tag_id }}'
+        value='{{ $id }}'
         name='tags[]'
-        {{ (in_array($tag_name, $tags_for_this_book)) ? 'CHECKED' : '' }}
+        {{ (in_array($id, $tagsForThisBook)) ? 'CHECKED' : '' }}
     >
-    {{ $tag_name }} <br>
+    {{ $name }} <br>
 @endforeach
 
 [...]
