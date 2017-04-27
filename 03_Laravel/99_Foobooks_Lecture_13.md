@@ -140,7 +140,7 @@ public function edit($id = null) {
     $authorsForDropdown = Author::authorsForDropdown();
 
     # Get all the possible tags so we can include them with checkboxes in the view
-    $tagsForCheckbox = Tag::getTagsForCheckboxes();
+    $tagsForCheckboxes = Tag::getTagsForCheckboxes();
 
     # Create a simple array of just the tag names for tags associated with this book;
     # will be used in the view to decide which tags should be checked off
@@ -154,7 +154,7 @@ public function edit($id = null) {
         ->with([
             'book' => $book,
             'authorsForDropdown' => $tagsForThisBook,
-            'tagsForCheckbox' => $tagsForCheckbox,
+            'tagsForCheckbox' => $tagsForCheckboxes,
             'tagsForThisBook' => $tagsForThisBook,
         ]);
 
@@ -166,7 +166,7 @@ public function edit($id = null) {
 
 [...]
 
-@foreach($tagsForCheckbox as $id => $name)
+@foreach($tagsForCheckboxes as $id => $name)
     <input
         type='checkbox'
         value='{{ $id }}'
@@ -216,3 +216,30 @@ public function update(Request $request, $id) {
 ```
 
 Test it out by removing and adding tags.
+
+
+## Revisiting the book delete feature
+
+Now that books are associated with tags, you'll get a *foreign key constraint* SQL error when trying to delete a book. To fix, you want to remove any tag associations before the book is deleted...
+
+```php
+public function delete(Request $request) {
+
+    # Get the book to be deleted
+    $book = Book::find($request->id);
+
+    if(!$book) {
+        Session::flash('message', 'Deletion failed; book not found.');
+        return redirect('/books');
+    }
+
+    # Remove any tag associations with this book
+    $book->tags()->detach();
+
+    $book->delete();
+
+    # [...etc...]
+
+}
+```
+
