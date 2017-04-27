@@ -65,7 +65,7 @@ Rather than duplicate the &ldquo;get authors for dropdown&rdquo; code, we should
 public static function authorsForDropdown() {
 
     $authors = Author::orderBy('last_name', 'ASC')->get();
-    $$authorsForDropdown = [];
+    $authorsForDropdown = [];
     foreach($authors as $author) {
         $authorsForDropdown[$author->id] = $author->last_name.', '.$author->first_name;
     }
