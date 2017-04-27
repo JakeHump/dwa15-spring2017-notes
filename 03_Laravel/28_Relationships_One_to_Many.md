@@ -170,7 +170,7 @@ public function up()
     Schema::table('books', function (Blueprint $table) {
 
         # Remove the field associated with the old way we were storing authors
-        # Whether you need this or not depends on whether your books table is built with an authors column
+        # Can do this here, or update the original migration that creates the `books` table
         # $table->dropColumn('author');
 
 		# Add a new INT field called `author_id` that has to be unsigned (i.e. positive)
@@ -210,8 +210,13 @@ public function run()
     foreach($books as $title => $book) {
 
         # First, figure out the id of the author we want to associate with this book
-        $authorName = explode(' ', $book['author']); # Example: 'Sylvia Plath' becomes ['Sylvia', 'Plath']
-        $author_id = Author::whereIn('last_name', $authorName)->pluck('id')->first();
+
+        # Extract just the last name from the book data...
+        # F. Scott Fitzgerald => ['F.', 'Scott', 'Fitzgerald'] => 'Fitzgerald'
+        $lastName = explode(' ', $book['author'])[1]; 
+
+        # Find that author in the authors table
+        $author_id = Author::where('last_name', '=', $lastName)->pluck('id')->first();
 
         Book::insert([
             'created_at' => $timestampForThisBook,
