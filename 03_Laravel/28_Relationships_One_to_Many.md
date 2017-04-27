@@ -93,7 +93,7 @@ Create the seeder:
 $ php artisan make:seeder AuthorsTableSeeder
 ```
 
-Make the Author model available at the top of this new seeder file (``/seeds/AuthorsTableSeeder.php`):
+Make the Author model available at the top of this new seeder file (`/seeds/AuthorsTableSeeder.php`):
 ```
 use App\Author;
 ```
@@ -213,10 +213,8 @@ public function run()
 
         # Extract just the last name from the book data...
         # F. Scott Fitzgerald => ['F.', 'Scott', 'Fitzgerald'] => 'Fitzgerald'
-        $lastName = explode(' ', $book['author'])[1]; 
-
-        # Find that author in the authors table
-        $author_id = Author::where('last_name', '=', $lastName)->pluck('id')->first();
+        $name = explode(' ', $book['author']);
+        $lastName = array_pop($name);
 
         Book::insert([
             'created_at' => $timestampForThisBook,
