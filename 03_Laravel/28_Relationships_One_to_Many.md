@@ -216,6 +216,9 @@ public function run()
         $name = explode(' ', $book['author']);
         $lastName = array_pop($name);
 
+        # Find that author in the authors table
+        $author_id = Author::where('last_name', '=', $lastName)->pluck('id')->first();
+
         Book::insert([
             'created_at' => $timestampForThisBook,
             'updated_at' => $timestampForThisBook,
