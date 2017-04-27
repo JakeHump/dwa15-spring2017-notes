@@ -298,26 +298,18 @@ Now that we've made these Models &ldquo;aware&rdquo; of these relationships, we 
 
 
 
-## Associate an author with a book
+## (Create) Associate an author with a book
 Here's an example where we create a book, and then associate that book with an author.
 
 
 ```php
-# To do this, we'll first create a new author:
-$author = new Author;
-$author->first_name = 'J.K';
-$author->last_name = 'Rowling';
-$author->bio_url = 'https://en.wikipedia.org/wiki/J._K._Rowling';
-$author->birth_year = '1965';
-$author->save();
-dump($author->toArray());
+$author = Author::where('first_name','=','J.K.')->first();
 
-# Then we'll create a new book and associate it with the author:
 $book = new Book;
-$book->title = "Harry Potter and the Philosopher's Stone";
-$book->published = 1997;
-$book->cover = 'http://prodimage.images-bn.com/pimages/9781582348254_p0_v1_s118x184.jpg';
-$book->purchase_link = 'http://www.barnesandnoble.com/w/harrius-potter-et-philosophi-lapis-j-k-rowling/1102662272?ean=9781582348254';
+$book->title = "Fantastic Beasts and Where to Find Them";
+$book->published = 2017;
+$book->cover = 'http://prodimage.images-bn.com/pimages/9781338132311_p0_v2_s192x300.jpg';
+$book->purchase_link = 'http://www.barnesandnoble.com/w/fantastic-beasts-and-where-to-find-them-j-k-rowling/1004478855';
 $book->author()->associate($author); # <--- Associate the author with this book
 $book->save();
 dump($book->toArray());
@@ -335,7 +327,7 @@ $book->author_id = $author->id;
 
 
 
-## Querying with relationships
+## (Read) Querying with relationships
 Once your Models have been programmed with relationships, it's easy to join data amongst multiple tables using [dynamic properties](http://laravel.com/docs/eloquent#dynamic-properties).
 
 For example, you can fetch a book and have access to its author info...
