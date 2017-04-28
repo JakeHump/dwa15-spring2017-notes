@@ -171,7 +171,7 @@ public function edit($id = null) {
         type='checkbox'
         value='{{ $id }}'
         name='tags[]'
-        {{ (in_array($id, $tagsForThisBook)) ? 'CHECKED' : '' }}
+        {{ (in_array($name, $tagsForThisBook)) ? 'CHECKED' : '' }}
     >
     {{ $name }} <br>
 @endforeach
