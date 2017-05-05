@@ -261,15 +261,15 @@ At this point, this work-around is acceptable because you're the only one runnin
 
 __Bonus tip:__
 
-Here's a route you may want to implement when practicing/learning. It will quickly drop and re-create your foobooks database giving you an absolute fresh start. The same thing can be accomplished via phpMyAdmin, but this will get the job done with less clicks.
+Here's a route you may want to implement when practicing/learning. It will quickly drop and re-create your database giving you an absolute fresh start. The same thing can be accomplished via phpMyAdmin, but this will get the job done with less clicks.
 
 ```php
 if(App::environment('local')) {
 
     Route::get('/drop', function() {
 
-        $db = 'foobooks';
-
+        $db = Config::get('database.connections.mysql.database');
+        
         DB::statement('DROP database '.$db);
         DB::statement('CREATE database '.$db);
 
