@@ -268,10 +268,12 @@ if(App::environment('local')) {
 
     Route::get('/drop', function() {
 
-        DB::statement('DROP database foobooks');
-        DB::statement('CREATE database foobooks');
+        $db = 'foobooks';
 
-        return 'Dropped foobooks; created foobooks.';
+        DB::statement('DROP database '.$db);
+        DB::statement('CREATE database '.$db);
+
+        return 'Dropped '.$db.'; created '.$db.'.';
     });
 
 };
